@@ -10,7 +10,7 @@ server {
     ##
 
 	ssl_certificate /var/www/html/example/ssl/ssl-bundle.crt;
-	ssl_certificate_key /var/www/html/example/ssl/urbanrealtyllc.key;
+	ssl_certificate_key /var/www/html/example/ssl/example.key;
 
     ##
     # Logging
@@ -24,7 +24,7 @@ server {
     # Site Files
     ##
 
-    root /var/www/html/example.com/public/;
+    root /var/www/html/example/public/;
     index index.php;
 
     location / {
@@ -60,6 +60,7 @@ server {
     location ~ \.php$ {
         try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
@@ -127,7 +128,7 @@ server {
 
     # Paths to certificate files.
 	ssl_certificate /var/www/html/example/ssl/ssl-bundle.crt;
-	ssl_certificate_key /var/www/html/example/ssl/urbanrealtyllc.key;
+	ssl_certificate_key /var/www/html/example/ssl/example.key;
 
     return 301 https://example.com$request_uri;
 }
