@@ -42,9 +42,6 @@ server {
 	# Rewrites for Yoast SEO XML Sitemap
     rewrite ^/sitemap_index.xml$ /index.php?sitemap=1 last;
     rewrite ^/([^/]+?)-sitemap([0-9]+)?.xml$ /index.php?sitemap=$1&sitemap_n=$2 last;
-
-	# Rewrite robots.txt
-	rewrite ^/robots.txt$ /index.php last;
 }
 
 # Redirect http to https
